@@ -12,39 +12,52 @@
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+static int ft_char(char c, const char *str)
 {
-	size_t	start;
-	size_t	end;
-	size_t	len;
-	char	*str;
+	size_t i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+char *ft_strtrim(char const *s1, char const *set)
+{
+	char *str;
+	size_t i;
+	size_t start;
+	size_t end;
 
 	start = 0;
+	i = 0;
 	end = ft_strlen(s1);
-	len = end - start;
-	str = malloc(len + 1);
-	while (start < end && ft_strchr(set, s1[start]))
+	while (s1[start] && ft_char(s1[start], set))
 		start++;
-	while (end > start && ft_strchr(set, s1[end - 1]))
+	while (s1[end] && ft_char(s1[end], set))
 		end--;
+	str = (char *)malloc(sizeof(s1) * (end - start + 1));
 	if (!str)
 		return (NULL);
-	ft_memcpy(str, s1 + start, len);
-	str[len] = '\0';
+	while (start < end)
+	{
+		str[i] = s1[start];
+		i++;
+		start++;
+	}
+	str[i] = '\0';
 	return (str);
 }
 
-/* int main(int argc, char **argv)
+int main()
 {
 	// Test input string
-	char const *s1 = "Hello, world!";
-
-	// Test set of characters to trim
+	char const *s1 = "!,!<Hello, world!";
 	char const *set = " ,!";
-
-	// Trim the input string and print the result
 	char *trimmed = ft_strtrim(s1, set);
 	printf("Trimmed string: %s\n", trimmed);
-
 	return 0;
-} */
+}
