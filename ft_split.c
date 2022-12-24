@@ -10,95 +10,90 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	num_words(char *str)
+#include "libft.h"
+
+/*
+	c_words - Count the number of substrings in a string
+	return: The number of substrings in the input string
+*/
+static int c_words(const char *str, char c)
 {
-	int	i;
-	int	n;
+	int i;
+	int j;
 
 	i = 0;
-	n = 0;
-	while (str[i])
+	j = 0;
+	while (*str)
 	{
-		while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-			i++;
-		if (str[i])
+		if (*str != c && j == 0)
 		{
-			while (str[i] && str[i] != 32 && !(str[i] >= 9 && str[i] <= 13))
-				i++;
-			n++;
+			j = 1;
+			i++;
 		}
+		else if (*str == c)
+			j = 0;
+		str++;
 	}
-	return (n);
+	return (i);
 }
-
-int	word_len(char *str, int i)
+/*
+	ft_word - Create a new substring from a string
+	return: Pointer to the new substring
+*/
+static char *ft_word(const char *str, int start, int end)
 {
-	int	c;
+	char *word;
 
-	c = 0;
-	while (str[i] && str[i] != 32 && !(str[i] >= 9 && str[i] <= 13))
+	word = malloc((end - start + 1) * sizeof(char));
+	ft_memcpy(word, str + start, end - start);
+	word[end - start] = '\0';
+	return (word);
+}
+/*
+	ft_split - Split a string into an array of substrings
+	return: Pointer to the array of substrings
+*/
+char **ft_split(char const *s, char c)
+{
+	size_t i;
+	size_t j;
+	int index;
+	char **split;
+
+	i = 0;
+	j = 0;
+	index = -1;
+	if (!s || !(split = malloc((c_words(s, c) + 1) * sizeof(char *))))
+		return (0);
+	while (i <= ft_strlen(s))
 	{
+		if (s[i] != c && index < 0)
+			index = i;
+		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
+		{
+			split[j++] = ft_word(s, index, i);
+			index = -1;
+		}
 		i++;
-		c++;
 	}
-	return (c);
+	split[j] = 0;
+	return (split);
 }
-
-char	**ft_split(char *str)
+int main(int argc, char *argv[])
 {
-	char	**tab;
-	int		i;
-	int		j;
-	int		k;
+	char **result;
+	char *str = "zdravo kako si";
+	char c = ' ';
+	int i;
 
-	tab = (char **)malloc((num_words(str) + 1) * sizeof(char *));
-	if (!tab)
-		return (NULL);
-	i, j = 0;
-	while (str[i])
+	i = 0;
+	result = ft_split("This is a test", ' ');
+
+	while (result[i])
 	{
-		k = 0;
-		while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-			i++;
-		if (str[i])
-		{
-			tab[j] = (char *)malloc((word_len(str, i) + 1) * sizeof(char));
-			if (!tab[j])
-				return (NULL);
-			while (str[i] && str[i] != 32 && !(str[i] >= 9 && str[i] <= 13))
-				tab[j][k++] = str[i++];
-			tab[j][k] = '\0';
-			j++;
-		}
+		printf("%s \n", result[i]);
+		i++;
 	}
-	tab[j] = NULL;
-	return (tab);
+	printf("\n");
+	printf("%d \n", c_words(str, c));
 }
-
-/* char **ft_split(char *str)
-{
-    char **words;
-    int i = 0, j = 0, k = 0;
-
-    words = (char **)malloc((num_words(str) + 1) * sizeof(char *));
-    if (!words)
-        return NULL;
-    while (str[i])
-    {
-        while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-            i++;
-        if (str[i])
-        {
-            words[j] = (char *)malloc((word_len(str, i) + 1) * sizeof(char));
-            if (!words[j])
-                return NULL;
-            while (str[i] && str[i] != 32 && !(str[i] >= 9 && str[i] <= 13))
-                words[j][k++] = str[i++];
-            words[j][k] = '\0';
-            j++;
-            k = 0;
-        }
-    }
-    words[j] = NULL;
-    return words;
-} */
