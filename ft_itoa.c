@@ -1,34 +1,76 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttaneski <ttaneski@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/28 14:17:01 by ttaneski          #+#    #+#             */
+/*   Updated: 2022/12/28 17:26:06 by ttaneski         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-char *ft_itoa(int n)
+int	len(long nb)
 {
-	int i;
-	char *str;
-	int rem;
+	int	len;
 
-	if (!(str = (char *)malloc(n * (sizeof(char *)))))
-		return (NULL);
-	else
+	len = 0;
+	if (nb < 0)
 	{
-		if (n == 0)
-			str[i++] = '0';
-		if (n < 0)
-		{
-			str[0] = '-';
-			n = n * -1;
-		}
-		while (n != 0)
-		{
-			rem = n % 10;
-			str[i++] = rem + '0';
-			n /= 10;
-		}
-		str[i] = '\0';
+		nb = nb * -1;
+		len++;
+	}
+	while (nb > 0)
+	{
+		nb = nb / 10;
+		len++;
+	}
+	return (len);
+}
+
+char	*itoa_helper(long int nb)
+{
+	char	*str;
+	int		i;
+
+	i = len(nb);
+	if (nb == 0)
+	{
+		str = ft_calloc(2, sizeof(char));
+		str[0] = 48;
+		return (str);
+	}
+	str = malloc(i * sizeof(char) + 1);
+	if (!str)
+		return (0);
+	str[i--] = 0;
+	if (nb < 0)
+	{
+		str[0] = '-';
+		nb = nb * -1;
+	}
+	while (nb > 0)
+	{
+		str[i--] = nb % 10 + '0';
+		nb = nb / 10;
 	}
 	return (str);
 }
 
-int main()
+char	*ft_itoa(int n)
 {
-	printf("%s", ft_itoa(-10));
+	char		*str;
+	long int	nb;
+
+	nb = n;
+	str = itoa_helper(nb);
+	return (str);
 }
+
+/* int main()
+{
+	printf("%s\n", ft_itoa(12345));
+	return (0);
+} */

@@ -6,7 +6,7 @@
 /*   By: ttaneski <ttaneski@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:37:29 by ttaneski          #+#    #+#             */
-/*   Updated: 2022/12/08 15:58:42 by ttaneski         ###   ########.fr       */
+/*   Updated: 2022/12/28 13:53:51 by ttaneski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_calloc(size_t nmbeb, size_t size)
 
 	rtn = malloc(size * nmbeb);
 	if (!rtn)
-		return (NULL);
-	ft_bzero(rtn, nmbeb);
+		return (rtn);
+	ft_bzero(rtn, nmbeb * size);
 	return (rtn);
 }

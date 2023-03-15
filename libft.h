@@ -6,7 +6,7 @@
 /*   By: ttaneski <ttaneski@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:22:17 by ttaneski          #+#    #+#             */
-/*   Updated: 2022/12/12 13:02:56 by ttaneski         ###   ########.fr       */
+/*   Updated: 2022/12/28 14:37:48 by ttaneski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
 char	*ft_strdup(const char *s);
-
+char	*ft_itoa(int nb);
 
 #endif

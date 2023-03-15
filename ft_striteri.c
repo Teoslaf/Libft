@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttaneski <ttaneski@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/02 13:45:01 by ttaneski          #+#    #+#             */
-/*   Updated: 2022/12/28 16:56:59 by ttaneski         ###   ########.fr       */
+/*   Created: 2022/12/28 15:32:02 by ttaneski          #+#    #+#             */
+/*   Updated: 2022/12/28 15:46:45 by ttaneski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	int	i;
+	unsigned int	i;
 
+	if (!s || !f)
+		return ;
 	i = 0;
-	while (s[i] != '\0' && s[i] != (char)c)
+	while (s[i])
+	{
+		f(i, s + i);
 		i++;
-	if (s[i] == (char)c)
-		return ((char *)s + i);
-	else
-		return ((char *) NULL);
+	}
 }
 
-/* int main()
+/* void to_upper(unsigned int index, char *c)
 {
-	const char str[] = "123645567389";
-
-
-	printf("%s\n", ft_strchr(str, '3' + 256));
-
-	return (0);
+	if (index % 2 == 0)
+		*c -= 32;
 }
- */
+
+int main(void)
+{
+	char s[] = "hello, world!";
+	ft_striteri(s, to_upper);
+	printf("%s\n", s);
+	return 0;
+} */

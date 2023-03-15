@@ -6,7 +6,7 @@
 /*   By: ttaneski <ttaneski@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 11:46:14 by ttaneski          #+#    #+#             */
-/*   Updated: 2022/12/12 12:11:25 by ttaneski         ###   ########.fr       */
+/*   Updated: 2022/12/28 11:21:28 by ttaneski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	char dest[40] = "Hello";
 	char src[20] = " There";
-	ft_strlcat(dest, src, 30);
+	ft_strlcat(dest, src, 10);
 	printf("%s \n", dest);
+	char dest1[40] = "Hello";
+	char src1[20] = " There";
+	strlcat(dest1, src1, 10);
+	printf("%s \n", dest1);
+
 } */

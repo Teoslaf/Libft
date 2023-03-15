@@ -6,7 +6,7 @@
 /*   By: ttaneski <ttaneski@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 14:18:07 by ttaneski          #+#    #+#             */
-/*   Updated: 2022/12/08 15:03:23 by ttaneski         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:59:32 by ttaneski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,23 @@ char	*ft_strrchr(const char *s, int c)
 	ret = 0;
 	while (*s)
 	{
-		if (*s == (unsigned char)c)
+		if (*s == (char)c)
 			ret = (char *)s;
 		s++;
 	}
-	if (!c)
+	if (!(char)c)
 		ret = ((char *)s);
 	return (ret);
 }
 
 /* int main()
 {
-	const char str[] = "123645567389";
-	const char ch = '\0';
+	const char str[] = "teste";
 	char *ret;
 
-	ret = ft_strrchr(str, ch);
+	ret = ft_strrchr(str, "t");
 
 	printf("%p\n", ret);
-	printf("%p\n", strrchr(str, ch));
 
 	return (0);
 } */

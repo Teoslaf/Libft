@@ -1,41 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttaneski <ttaneski@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/02 11:18:27 by ttaneski          #+#    #+#             */
-/*   Updated: 2022/12/13 10:40:06 by ttaneski         ###   ########.fr       */
+/*   Created: 2022/12/28 15:01:43 by ttaneski          #+#    #+#             */
+/*   Updated: 2022/12/28 15:31:47 by ttaneski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
+	char	*str;
 	size_t	i;
+	size_t	len;
 
+	len = ft_strlen(s);
 	i = 0;
-	if (size > 0)
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	while (s[i])
 	{
-		while (src[i] && i < (size - 1))
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
-	}
-	while (src[i])
+		str[i] = f(i, s[i]);
 		i++;
-	return (i);
+	}
+	str[i] = '\0';
+	return (str);
 }
 
-/* int main()
+/* char to_upper(unsigned int index, char c)
 {
-	char dest[] = "1234";
-	char src[] = "1234";
-	printf("%s %s \n", dest, src);
-	ft_strlcpy(dest, src, 3);
-	printf("%s %s \n", dest, src);
+	return (index % 2 == 0 ? c - 32 : c);
+}
+
+int main(void)
+{
+	char *str = "hello";
+	printf("%s", ft_strmapi(str,ft_toupper));
+	return(0);
 } */

@@ -6,20 +6,16 @@
 /*   By: ttaneski <ttaneski@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:47:00 by ttaneski          #+#    #+#             */
-/*   Updated: 2022/12/12 14:47:23 by ttaneski         ###   ########.fr       */
+/*   Updated: 2022/12/28 13:56:41 by ttaneski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-	c_words - Count the number of substrings in a string
-	return: The number of substrings in the input string
-*/
-static int c_words(const char *str, char c)
+static int	c_words(const char *str, char c)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -36,34 +32,29 @@ static int c_words(const char *str, char c)
 	}
 	return (i);
 }
-/*
-	ft_word - Create a new substring from a string
-	return: Pointer to the new substring
-*/
-static char *ft_word(const char *str, int start, int end)
+
+static char	*ft_word(const char *str, int start, int end)
 {
-	char *word;
+	char	*word;
 
 	word = malloc((end - start + 1) * sizeof(char));
 	ft_memcpy(word, str + start, end - start);
 	word[end - start] = '\0';
 	return (word);
 }
-/*
-	ft_split - Split a string into an array of substrings
-	return: Pointer to the array of substrings
-*/
-char **ft_split(char const *s, char c)
+
+char	**ft_split(char const *s, char c)
 {
-	size_t i;
-	size_t j;
-	int index;
-	char **split;
+	size_t	i;
+	size_t	j;
+	int		index;
+	char	**split;
 
 	i = 0;
 	j = 0;
 	index = -1;
-	if (!s || !(split = malloc((c_words(s, c) + 1) * sizeof(char *))))
+	split = malloc((c_words(s, c) + 1) * sizeof(char *));
+	if (!s || !(split))
 		return (0);
 	while (i <= ft_strlen(s))
 	{
@@ -79,11 +70,22 @@ char **ft_split(char const *s, char c)
 	split[j] = 0;
 	return (split);
 }
-int main(int argc, char *argv[])
+
+/*
+	c_words - Count the number of substrings in a string
+	return: The number of substrings in the input string
+*/
+/*
+	ft_word - Create a new substring from a string
+	return: Pointer to the new substring
+*/
+/*
+	ft_split - Split a string into an array of substrings
+	return: Pointer to the array of substrings
+*/
+/* int main(int argc, char *argv[])
 {
 	char **result;
-	char *str = "zdravo kako si";
-	char c = ' ';
 	int i;
 
 	i = 0;
@@ -94,6 +96,4 @@ int main(int argc, char *argv[])
 		printf("%s \n", result[i]);
 		i++;
 	}
-	printf("\n");
-	printf("%d \n", c_words(str, c));
-}
+} */
