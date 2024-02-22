@@ -63,4 +63,4 @@ ft_lstlast - returns the last element of the list.\
 ft_lstadd_back - adds an element at the end of a list.\
 ft_lstclear - deletes and free list.\
 ft_lstiter - applies a function to each element of a list.\
-ft_lstmap - applies a function to each element of a list.\
+ft_lstmap - applies a function to each element of a list.
