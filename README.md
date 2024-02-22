@@ -1,77 +1,66 @@
-Libft
+# Libft Introduction
+## Libft (Library of Functions)
 
-Libft is a library containing a collection of functions that will be a useful tool for your cursus. This project requires you to code many fundamental C library functions yourself. This library will help you to use your own functions throughout your other projects.
-Technical considerations
+In this project, you will be creating a library of functions, the file structure for this project is the following:
 
-    Declaring global variables is forbidden.
-    If you need helper functions to split a more complex function, define them as static functions. This way, their scope will be limited to the appropriate file.
-    Place all your files at the root of your repository.
-    Turning in unused files is forbidden.
-    Every .c files must compile with the flags -Wall -Wextra -Werror.
-    You must use the command ar to create your library. Using the libtool command is forbidden.
-    Your libft.a has to be created at the root of your repository.
+.c Files
+Where all of your functions will be written in.
 
-Part 1 - Libc functions
+.h (Header)
+Your header file is useful for 2 things:
 
-To begin, you must redo a set of functions from the libc. Your functions will have the same prototypes and implement the same behaviors as the originals. They must comply with the way they are defined in their man. The only difference will be their names. They will begin with the 'ft_' prefix. For instance, strlen becomes ft_strlen.
+First, instead of doing for example #include <unistd.h> in all of your .c files, you just write it once in your header and all of your .c files will read it from your header file.
+Secondly, let's say one of your .c files uses another function from another .c file, well instead of writting that function above, just write #include "libft.h" and it will find it in your header file.
+Make sure you add #include "libft.h" in all of your .c files.
 
-The following functions must be implemented:
+Makefile
+Makefile is where you will create a file to compile your projects. Remember how in the piscine, you created an int main and gcc to compile the projects, well with a Makefile, you don't have to do that anymore, you just type make once you have created your Makefile.
 
-    isalpha
-    isdigit
-    isalnum
-    isascii
-    isprint
-    strlen
-    memset
-    bzero
-    memcpy
-    memmove
-    strlcpy
-    strlcat
-    toupper
-    tolower
-    strchr
-    strrchr
-    strncmp
-    memchr
-    memcmp
-    strnstr
-    atoi
-
-In order to implement the two following functions, you will use malloc():
-
-    calloc
-    strdup
-
-Part 2 - Additional functions
-
-In this second part, you must develop a set of functions that are either not in the libc, or that are part of it but in a different form.
-
-The following functions must be implemented:
-
-    ft_substr
-    ft_strjoin
-    ft_strtrim
-    ft_split
-    ft_itoa
-    ft_strmapi
-
-Turn in files
-
-The following files should be included in your submission:
-
-    Makefile
-    libft.h
-    ft_*.c (all your function files)
-
-External functions
-
-The following external functions are allowed:
-
-    malloc
-    free
-
-Conclusion
-
-This project will help you gain a deeper understanding of C and its standard library. It will also be a useful tool for future projects as you will be able to reuse your own functions throughout your other projects.
+Libft Functions
+Functions from <ctype.h>\
+ft_isalpha - checks for an alphabetic character.\
+ft_isdigit - checks for a digit (0 through 9).\
+ft_isalnum - checks for an alphanumeric character.\
+ft_isascii - checks whether c fits into the ASCII character set.\
+ft_isprint - checks for any printable character.\
+ft_toupper - convert char to uppercase.\
+ft_tolower - convert char to lowercase.\
+Functions from <string.h>\
+ft_memset - fill memory with a constant byte.\
+ft_strlen - calculate the length of a string.\
+ft_bzero - zero a byte string.\
+ft_memcpy - copy memory area.\
+ft_memmove - copy memory area.\
+ft_strlcpy - copy string to an specific size.\
+ft_strlcat - concatenate string to an specific size.\
+ft_strchr - locate character in string.\
+ft_strrchr - locate character in string.\
+ft_strncmp - compare two strings.\
+ft_memchr - scan memory for a character.\
+ft_memcmp - compare memory areas.\
+ft_strnstr - locate a substring in a string.\
+ft_strdup - creates a dupplicate for the string passed as parameter.\
+Functions from <stdlib.h>\
+ft_atoi - convert a string to an integer.\
+ft_calloc - allocates memory and sets its bytes' values to 0.\
+Non-standard functions\
+ft_substr - returns a substring from a string.\
+ft_strjoin - concatenates two strings.\
+ft_strtrim - trims the beginning and end of string with specific set of chars.\
+ft_split - splits a string using a char as parameter.\
+ft_itoa - converts a number into a string.\
+ft_strmapi - applies a function to each character of a string.\
+ft_striteri - applies a function to each character of a string.\
+ft_putchar_fd - output a char to a file descriptor.\
+ft_putstr_fd - output a string to a file descriptor.\
+ft_putendl_fd - output a string to a file descriptor, followed by a new line.\
+ft_putnbr_fd - output a number to a file descriptor.\
+Linked list functions\
+ft_lstnew - creates a new list element.\
+ft_lstadd_front - adds an element at the beginning of a list.\
+ft_lstsize - counts the number of elements in a list.\
+ft_lstlast - returns the last element of the list.\
+ft_lstadd_back - adds an element at the end of a list.\
+ft_lstclear - deletes and free list.\
+ft_lstiter - applies a function to each element of a list.\
+ft_lstmap - applies a function to each element of a list.\
